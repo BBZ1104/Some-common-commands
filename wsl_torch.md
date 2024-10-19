@@ -35,4 +35,14 @@ code .
 pip install torch torchvision numpy scipy matplotlib h5py
 ```
 
-aaa
+### 检查是否成功
+```
+import torch
+
+# 检查 PyTorch 版本
+print(f"PyTorch version: {torch.__version__}")
+
+# 检查 GPU 是否可用
+gpu_available = torch.cuda.is_available()
+print(f"Is GPU available: {gpu_available}")
+```
