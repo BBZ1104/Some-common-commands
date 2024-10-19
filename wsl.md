@@ -23,10 +23,10 @@ exit
 export JULIA_NUM_THREADS=4
 ```
 ### 开启julia
-```bash
+```julia
 julia
 ```
 ### 显示线程数量
-```bash
+```julia
 Threads.nthreads()
 ```
