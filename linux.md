@@ -57,13 +57,6 @@ vim有三种模式,分别是一般模式、编辑模式和命令模式
 （7）可以对以上命令进行组合，比如```:n1,n2s/word1/word2/g```其中n1,n2为数字，这串指令表示在n1行和n2行之间查找```word1```并替换为```word2```，类似的```:1,$s/word1/word2/g```表示全文查找```word1```并替换为```word2```，```:1,$s/word1/word2/gc```与上面的命令相仿，不同点在于末尾的```c```表示替换时需要确认。
 
 
-
-
-
-# git 基本知识及指令
-git 是一个伟大的版本控制工具，
-
-
 # shell介绍
 
 
@@ -123,6 +116,79 @@ blah.c:
 - 同理，接着运行顶部的```cc```命令
 
 - 就这样，一个编译好的c程序```blah``` 就诞生了
+
+# git 基本知识及指令
+git 是一个伟大的版本控制工具，
+
+## SSH问题
+## 服务器配置 SSH 密钥
+1. 生成 SSH 密钥对（使用 Windows上 的 Git bash）
+```bash
+ssh-keygen -t rsa -b 4096
+```
+2. 在 Linux 服务器粘贴公钥
+```bash
+nano ~/.ssh/authorized_keys
+```
+3. 确保权限正确
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+4. SSH 配置
+
+配置文件是 `C:\Users\{User}\.ssh\config`
+```ini
+Host server1
+    HostName hostname1
+    User username1
+    Port 22
+    IdentityFile ~/.ssh/id_rsa
+
+Host server2
+    HostName hostname2
+    User username2
+    Port 22
+    IdentityFile ~/.ssh/id_rsa
+```
+多个服务器可以设置相同的公钥和私钥
+
+### SSH无法clone私密仓库问题 
+
+今天遇到了wsl下git无法clone ssh的问题，主要是clone私密仓库的问题，其实就是上面的第三步的问题
+ 假设你已经有了根目录下的.ssh文件夹
+ 
+ 这时候你会觉得很奇怪，为什么我已经配置好了.ssh文件，为什么还是没办法clone
+ 
+ 这是因为你没有给这些文件权限
+ 
+ 输入以下命令
+```bash
+sudo chmod 700 ~/.ssh
+```
+```bash
+sudo chmod 600 ~/.ssh/id_rsa
+```
+```bash
+sudo chmod 644 ~/.ssh/id_rsa.pub
+```
+### 问题就解决了，你可以clone了，开始写代码！！！
+
+你问我，这些命令是什么含义？
+
+好，那我们就一起学习一下
+
+sudo, superuser do, 超级用户身份, root权限的运行,理论上以上命令不需要sudo
+
+700--->7-0-0
+
+第一个7是二进制的 111。代表r w x都是1，也就是允许 读，写，运行，三个数字，第一个数字是针对自己的，第二个数字是针对和自己在同一个用户组的其它用户的，第三个数字是针对其它用户，比如777就是任何人可以进行任何操作
+
+同样的道理，600就是自己可以读和写，因为是二进制的110
+
+pub是公钥，也就是自己可以读写6（4+2+0，也就是110），其他人只读（4+0+0，100）
+
+2024.10.24
 
 
 
