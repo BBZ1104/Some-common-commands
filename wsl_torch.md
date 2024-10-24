@@ -1,42 +1,42 @@
 ## 使用wsl进入Linux，进行torch学习
 
 ### 进入wsl
-```base
+```bash
 wsl
 ```
 
 ### 进入用户主目录
-```base
+```bash
 cd ~
 ```
 
 ### 创建 文件夹 
-```base
+```bash
 mkdir foldername
 ```
 
 ### 进入文件夹
-```base
+```bash
 cd foldername
 ```
 
 ### 创建虚拟环境 
-```base
+```bash
 python3 -m venv .venv
 ```
 
 ### 进入 vscode
-```base
+```bash
 code .
 ```
 
 ### 安装包
-```base
+```bash
 pip install torch torchvision numpy scipy matplotlib h5py
 ```
 
 ### 检查是否成功
-```
+```bash
 import torch
 
 # 检查 PyTorch 版本
