@@ -36,13 +36,28 @@ pip install torch torchvision numpy scipy matplotlib h5py
 ```
 
 ### 检查是否成功
+
+### 检查 PyTorch 版本
 ```bash
 import torch
-
-# 检查 PyTorch 版本
 print(f"PyTorch version: {torch.__version__}")
-
-# 检查 GPU 是否可用
+```
+### 检查 GPU 是否可用
+```bash
 gpu_available = torch.cuda.is_available()
 print(f"Is GPU available: {gpu_available}")
 ```
+
+## 生成和下载环境需要的包
+### 生成需要包的文件
+```bash
+pip freeze>requirements.text
+```
+### 下载需要包的文件
+```bash
+pip install -r requirements.text
+```
+
+## 上传时候忽略本地缓存
+
+### 创建.gitignore文件，在里面填写.venv
